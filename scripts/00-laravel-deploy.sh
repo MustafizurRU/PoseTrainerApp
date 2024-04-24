@@ -2,7 +2,8 @@
 echo "Running composer"
 composer global require hirak/prestissimo
 composer install --optimize-autoloader --no-dev --working-dir=/var/www/html
-npm install --working-dir=/var/www/html
+npm install && npm run build --prefix /var/www/html
+
 php artisan optimize
 php artisan optimize:clear
 
