@@ -1,14 +1,19 @@
 #!/usr/bin/env bash
 echo "Running composer"
 composer global require hirak/prestissimo
-composer install --no-dev --working-dir=/var/www/html
-npm install --prefix /var/www/html
+composer install --optimize-autoloader --no-dev --working-dir=/var/www/html
+npm install --working-dir=/var/www/html
+php artisan optimize
+php artisan optimize:clear
 
-echo "generating application key..."
-php artisan key:generate --show
+#echo "generating application key..."
+#php artisan key:generate --show
 
 echo "Caching config..."
 php artisan config:cache
+
+echo "Caching views..."
+php artisan event:cache
 
 echo "Caching routes..."
 php artisan route:cache
