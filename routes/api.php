@@ -8,6 +8,10 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+Route::get('/all-user', function (Request $request) {
+    return $request->user()->all();
+})->middleware('auth:sanctum');
+
 //login
 Route::post('/login', [ApiController::class, 'login']);
 //register
